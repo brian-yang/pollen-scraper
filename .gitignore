@@ -1,3 +1,12 @@
+# =========================== #
+# CUSTOM GITIGNORE FILES
+# =========================== #
+pollen-scraper/database_settings.py
+
+# =========================== #
+# PYTHON GITIGNORE FILES
+# =========================== #
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
