@@ -13,10 +13,12 @@ class PollenSpider(Spider):
     start_urls = ['http://pollen.com/forecast/current/pollen/90210']
 
     forecast_dates_xpath = '//div[@class="forecast-day ng-scope ng-isolate-scope"]'
-    item_fields = {'title': './/h3[@class="day-header ng-binding"]/text()',
-                   'pollen_value': './/p[@class="forecast-level ng-binding"]/text()',
-                   'severity': '//p[@class="forecast-level-desc ng-binding"]/text()',
-                   'top_allergens': '//span[@class="ng-binding"]/text()'}
+    item_fields = {
+        'title': './/h3[@class="day-header ng-binding"]/text()',
+        'pollen_value': './/p[@class="forecast-level ng-binding"]/text()',
+        'severity': '//p[@class="forecast-level-desc ng-binding"]/text()',
+        'top_allergens': '//span[@class="ng-binding"]/text()'
+    }
 
     def parse(self, response):
         selector = Selector(response)
