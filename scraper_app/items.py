@@ -4,4 +4,4 @@ class PollenScraper(Item):
     title = Field()
     pollen_value = Field()
     severity = Field()
-    top_allergens = Field()
+    #top_allergens = Field()

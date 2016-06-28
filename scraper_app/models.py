@@ -22,4 +22,4 @@ class Forecasts(DeclarativeBase):
     title = Column('title', String)
     pollen_value = Column('pollen_value', Float, nullable=True)
     severity = Column('severity', String, nullable=True)
-    top_allergens = Column('top_allergens', String, nullable=True)
+    #top_allergens = Column('top_allergens', String, nullable=True)
