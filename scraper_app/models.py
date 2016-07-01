@@ -19,7 +19,7 @@ class Forecasts(DeclarativeBase):
     __tablename__ = 'forecasts'
 
     id = Column(Integer, primary_key=True)
-    title = Column('title', String)
-    pollen_value = Column('pollen_value', Float, nullable=True)
+    title = Column('title', String, nullable=True)
+    pollen_value = Column('pollen_value', String, nullable=True)
     severity = Column('severity', String, nullable=True)
     #top_allergens = Column('top_allergens', String, nullable=True)

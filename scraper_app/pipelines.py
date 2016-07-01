@@ -1,6 +1,8 @@
 from sqlalchemy.orm import sessionmaker
 from models import Forecasts, db_connect, create_forecast_table
 
+from scrapy import log
+
 class PollenScraperPipeline(object):
     def __init__(self):
         engine = db_connect()
