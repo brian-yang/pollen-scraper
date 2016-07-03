@@ -1,7 +1,12 @@
 # =========================== #
 # CUSTOM GITIGNORE FILES
 # =========================== #
+
+# CUSTOM DATABASE FILE - SHOULD NOT BE PUSHED
 scraper_app/database_settings.py
+
+# May appear as a result of scraping
+scraper_app/spiders/C:\nppdf32Log\debuglog.txt
 
 # =========================== #
 # PYTHON GITIGNORE FILES
