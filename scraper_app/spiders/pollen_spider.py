@@ -40,7 +40,7 @@ class PollenSpider(Spider):
     def session_properties(self):
         log.msg("Setting properties...")
         self.session.set_attribute('auto_load_images', False) # do not load images
-        self.session.set_timeout(60) # set timeout
+        self.session.set_timeout(20) # set timeout
 
     def parse(self, response):
         # start session
