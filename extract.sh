@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage() {
-    echo "Usage: $0 -z {zipcode}" >&2
+    echo "Usage: $0 -z <zipcode>" >&2
 }
 
 while getopts ":z:" opt; do
