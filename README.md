@@ -19,7 +19,7 @@ You may want to create a python virtual environment before installing so as to n
 ```bash
 ./setup.sh
 ```
-*Postgres and scrapy should be set up independently.*
+**Postgres and scrapy should be set up independently.**
 
 ### Extract data ###
 ```bash
@@ -37,6 +37,6 @@ You may want to create a python virtual environment before installing so as to n
 Please ensure that Postgres is set up correctly, with a database named scrape and a user postgres. The default database name can be changed in database_settings.py and the extract.sh script. The default user name can be changed in the extract.sh script.
 
 Make sure that you rename the database_settings template to database_settings.py if you use it as database_settings.py has been added to the gitignore.
-*Please make sure that you do not push the file with your database settings!*
+**Please make sure that you do not push the file with your database settings!**
 
 Also note that the crawler may time out sometimes without successfully extracting. The default timeout is 20 seconds, but this can be changed in pollen_spider.py.
