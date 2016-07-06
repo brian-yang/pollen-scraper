@@ -17,12 +17,12 @@ class PollenSpider(Spider):
         self.allowed_domains = ['pollen.com']
 
         self.zipcode = zipcode.strip()
-        
+
         if len(self.zipcode) != 5: # TODO: CHECK FOR VALID ZIPCODE
             raise CloseSpider('No zipcode given.')
-        
+
         self.start_urls = ['http://pollen.com/forecast/current/pollen/' + self.zipcode]
-        
+
         self.item_fields = {
             'title': ['h3', "day-header"],
             'pollen_value': ['p', "forecast-level"],
@@ -47,21 +47,21 @@ class PollenSpider(Spider):
         dryscrape.start_xvfb()
         self.session = dryscrape.Session() # start session
         self.session_properties()
-        
-        log.msg("Scraping...")
+
+        log.msg("Visiting url(s)...")
 
         # visit url
         self.session.visit(self.start_urls[0]) # visit website
         response = self.session.body()
 
         # killall xvfb
-        log.msg("Killing xvfb")
+        log.msg("Killing xvfb...")
         os.system("sudo killall Xvfb")
 
         # scraper objects
         scraper = PollenScraper()
         self.soup = BeautifulSoup(response, 'lxml')
-        
+
         # extract
         if (self.date != ""):
             for field, html in self.item_fields.iteritems():
@@ -71,7 +71,7 @@ class PollenSpider(Spider):
                 extracted = data.extract()
                 scraper[field] = extracted
                 # log.msg(extracted)
-            
+
             # yield
             yield scraper
 
