@@ -1,14 +1,13 @@
 from scrapy.spider import Spider
 from scrapy.exceptions import CloseSpider
 from scrapy.selector import Selector
-from scrapy import log
 
 from scraper_app.items import PollenScraper
 
 import dryscrape
 from bs4 import BeautifulSoup
 
-import os, sys
+import os
 
 class PollenSpider(Spider):
     name = 'pollenscraper'
@@ -16,10 +15,8 @@ class PollenSpider(Spider):
     def __init__(self, date="", zipcode=""):
         self.allowed_domains = ['pollen.com']
 
-        self.zipcode = zipcode.strip()
-
-        if len(self.zipcode) != 5: # TODO: CHECK FOR VALID ZIPCODE
-            raise CloseSpider('No zipcode given.')
+        self.check_zipcode(zipcode)
+        self.check_date(date)
 
         self.start_urls = ['http://pollen.com/forecast/current/pollen/' + self.zipcode]
 
@@ -29,61 +26,67 @@ class PollenSpider(Spider):
             'severity': ['p', "forecast-level-desc"]
         }
 
+    def session_properties(self, sess):
+        os.system("echo 'Setting properties...'")
+        sess.set_attribute('auto_load_images', False) # do not load images
+        sess.set_timeout(20) # set timeout
+
+    def parse(self, response):
+        # start session
+        os.system("echo 'Starting xvfb instance...'")
+        dryscrape.start_xvfb()
+        session = dryscrape.Session() # start session
+        self.session_properties(session)
+
+        os.system("echo 'Crawling...'")
+
+        # visit url
+        session.visit(self.start_urls[0]) # visit website
+        response = session.body()
+
+        os.system("echo 'Done crawling.'")
+
+        # pkill xvfb
+        os.system("echo 'Closing xvfb instance (runs sudo pkill Xvfb)...'")
+        os.system("sudo pkill Xvfb")
+
+        # scraper objects
+        self.scraper = PollenScraper()
+        self.soup = BeautifulSoup(response, 'lxml')
+
+        # extract
+        if (self.date != ""):
+            self.extract_date(self.date)
+
+            # yield
+            yield self.scraper
+
+        else:
+            for date in range(3):
+                self.extract_date(date)
+
+                # yield
+                yield self.scraper
+
+    def check_zipcode(self, z):
+        if len(z) != 5 or not z.isdigit():
+            raise CloseSpider('No zipcode given.')
+        else:
+            self.zipcode = z.strip()
+
+    def check_date(self, d):
         try:
-            if (date != ""):
-                self.date = int(date)
+            if (d != ""):
+                self.date = int(d)
             else:
                 self.date = ""
         except:
             raise CloseSpider('Invalid date. date should either equal 0 (yesterday), 1 (today), or 2 (tomorrow).')
 
-    def session_properties(self):
-        log.msg("Setting properties...")
-        self.session.set_attribute('auto_load_images', False) # do not load images
-        self.session.set_timeout(20) # set timeout
-
-    def parse(self, response):
-        # start session
-        dryscrape.start_xvfb()
-        self.session = dryscrape.Session() # start session
-        self.session_properties()
-
-        log.msg("Visiting url(s)...")
-
-        # visit url
-        self.session.visit(self.start_urls[0]) # visit website
-        response = self.session.body()
-
-        # killall xvfb
-        log.msg("Killing xvfb...")
-        os.system("sudo killall Xvfb")
-
-        # scraper objects
-        scraper = PollenScraper()
-        self.soup = BeautifulSoup(response, 'lxml')
-
-        # extract
-        if (self.date != ""):
-            for field, html in self.item_fields.iteritems():
-                tags = str(self.soup.findAll(html[0], class_=html[1])[self.date])
-                sel = Selector(text=tags)
-                data = sel.xpath('//text()')
-                extracted = data.extract()
-                scraper[field] = extracted
-                # log.msg(extracted)
-
-            # yield
-            yield scraper
-
-        else:
-            for date in range(3):
-                for field, html in self.item_fields.iteritems():
-                    tags = str(self.soup.findAll(html[0], class_=html[1])[date])
-                    sel = Selector(text=tags)
-                    data = sel.xpath('//text()')
-                    extracted = data.extract()
-                    scraper[field] = extracted
-                    # log.msg(extracted)
-
-                # yield
-                yield scraper
+    def extract_date(self, d):
+        for field, html in self.item_fields.iteritems():
+            tags = str(self.soup.findAll(html[0], class_=html[1])[d])
+            sel = Selector(text=tags)
+            data = sel.xpath('//text()')
+            extracted = data.extract()
+            self.scraper[field] = extracted

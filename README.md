@@ -29,10 +29,11 @@ You may want to create a python virtual environment before installing so as to n
 * [SQLAlchemy](http://docs.sqlalchemy.org/en/latest/intro.html) (installed in setup script)
 * [dryscrape](http://dryscrape.readthedocs.io/en/latest/installation.html) (installed in setup script)
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) (install in setup script)
+* xvfb (install in setup script or use apt-get)
 
 ## Additional Notes ##
 Make sure that you rename the database_settings template to database_settings.py if you use it as database_settings.py has been added to the gitignore.
-**Please make sure that you do not push the file with your database settings!**
+**PLEASE MAKE SURE THAT YOU DO NOT PUSH THE FILE WITH YOUR DATABASE SETTINGS!**
 
 **Please ensure that Postgres is set up correctly, with a database named scrape and a user postgres.** The default database name can be changed in database_settings.py and the extract.sh script. The default user name can be changed in the extract.sh script.
 

@@ -4,6 +4,14 @@ function usage() {
     echo "Usage: $0 -z <zipcode>" >&2
 }
 
+# Check if there are no options/arguments passed
+if [ $# -eq 0 ];
+then
+    echo "No command line arguments found."
+    usage
+    exit 1
+fi
+
 while getopts ":z:" opt; do
     case $opt in
 	z)
@@ -23,18 +31,19 @@ while getopts ":z:" opt; do
 done
 shift "$((OPTIND-1))"
 
-echo "Please enter the password for user: postgres."
-sudo -u postgres psql -h localhost scrape >/dev/null << EOF
- DELETE FROM forecasts;
- ALTER SEQUENCE public.forecasts_id_seq RESTART WITH 1;
-EOF
-
 echo "Scraping..."
 scrapy crawl pollenscraper -a zipcode="$zip"
 echo "Done scraping!"
 
-echo "Please enter again the password for user: postgres."
+echo "====================================="
+
+echo "Enter PSQL password for user postgres."
 sudo -u postgres psql -h localhost scrape << EOF
+ CREATE TEMPORARY TABLE tempforecasts(tempid int);
+ INSERT INTO tempforecasts(tempid) SELECT id FROM forecasts ORDER BY id DESC LIMIT 3;
+ DELETE FROM forecasts WHERE NOT EXISTS (SELECT 1 FROM tempforecasts WHERE tempid = id);
+ ALTER SEQUENCE public.forecasts_id_seq RESTART WITH 1;
+ UPDATE forecasts SET id = DEFAULT;
  SELECT * FROM forecasts;
 EOF
 
