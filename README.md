@@ -40,7 +40,7 @@ Make sure that you rename the database_settings template to database_settings.py
 **Also note that the crawler may time out sometimes without successfully extracting. The default timeout is 20 seconds, but this can be changed in pollen_spider.py.**
 
 ## Thank You Note ##
-Special thanks to [newcoder.io](www.newcoder.io) for the amazing tutorial on web scraping!
+Special thanks to [newcoder](www.newcoder.io) for the amazing tutorial on web scraping!
 
 ## License ##
 This product is licensed under the [MIT license](LICENSE) as well as the
