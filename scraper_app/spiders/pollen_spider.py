@@ -49,7 +49,7 @@ class PollenSpider(Spider):
         os.system("echo 'Done crawling.'")
 
         # pkill xvfb
-        os.system("echo 'Closing xvfb instance (runs sudo pkill Xvfb)...'")
+        os.system("echo 'Closing xvfb instance...'")
         os.system("sudo pkill Xvfb")
 
         # scraper objects
