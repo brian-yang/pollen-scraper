@@ -1,7 +1,9 @@
-from scrapy.spider import Spider
+from scrapy.spiders import Spider
 from scrapy.exceptions import CloseSpider
 from scrapy.selector import Selector
 
+# import sys
+# sys.path.append("../..")
 from scraper_app.items import PollenScraper
 
 import dryscrape

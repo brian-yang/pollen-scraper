@@ -1,7 +1,7 @@
 from sqlalchemy.orm import sessionmaker
 from models import Forecasts, db_connect, create_forecast_table
 
-from scrapy import log
+import logging
 
 class PollenScraperPipeline(object):
     def __init__(self):

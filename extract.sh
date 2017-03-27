@@ -35,16 +35,22 @@ echo "Scraping..."
 scrapy crawl pollenscraper -a zipcode="$zip"
 echo "Done scraping!"
 
-echo "====================================="
+echo "================================================"
+echo "Login as the postgres user for psql."
+echo "================================================"
 
-echo "Enter PSQL password for user postgres."
-sudo -u postgres psql -h localhost scrape << EOF
- CREATE TEMPORARY TABLE tempforecasts(tempid int);
- INSERT INTO tempforecasts(tempid) SELECT id FROM forecasts ORDER BY id DESC LIMIT 3;
- DELETE FROM forecasts WHERE NOT EXISTS (SELECT 1 FROM tempforecasts WHERE tempid = id);
- ALTER SEQUENCE public.forecasts_id_seq RESTART WITH 1;
- UPDATE forecasts SET id = DEFAULT;
- SELECT * FROM forecasts;
-EOF
+results=`psql -U postgres -h localhost scrape -t -c \
+  "CREATE TEMPORARY TABLE tempforecasts(tempid int); \
+  INSERT INTO tempforecasts(tempid) SELECT id FROM forecasts ORDER BY id DESC LIMIT 3; \
+  DELETE FROM forecasts WHERE NOT EXISTS (SELECT 1 FROM tempforecasts WHERE tempid = id); \
+  ALTER SEQUENCE public.forecasts_id_seq RESTART WITH 1; \
+  UPDATE forecasts SET id = DEFAULT; \
+  SELECT title,pollen_value,severity FROM forecasts;"`
 
-echo "If nothing is shown in the table, session timed out. Please try again."
+echo "================================================"
+echo "$results"
+echo "================================================"
+
+echo "NOTE: If you see 'Unhandled error in Deferred', you need to set the postgres account information \
+in database_settings.py."
+echo "NOTE: If nothing is shown in the table, the session timed out. Please try again."
