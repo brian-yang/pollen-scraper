@@ -21,13 +21,12 @@ Ubuntu: [Installation and basic server setup.](https://help.ubuntu.com/community
 Mac: [Installation and basic server setup.](http://postgresapp.com/)
 
 ### Dependencies/Installation pages ###
-* [Scrapy](http://doc.scrapy.org/en/latest/intro/install.html) (see platform specific installation notes first before installing)
+* [Scrapy](http://doc.scrapy.org/en/latest/intro/install.html) (see platform specific installation notes before running the setup script)
+* [Postgres](https://help.ubuntu.com/community/PostgreSQL) (see above for platform-specific installation instructions)
 * [SQLAlchemy](http://docs.sqlalchemy.org/en/latest/intro.html) (installed in setup script)
 * [dryscrape](http://dryscrape.readthedocs.io/en/latest/installation.html) (installed in setup script)
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) (installed in setup script)
-* [xvfb](https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) (installed in setup script or use apt-get)
-* [Postgres](https://help.ubuntu.com/community/PostgreSQL)
-
+* [xvfb](https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) (installed in setup script)
 
 ## How to run ##
 ### Extract data ###
