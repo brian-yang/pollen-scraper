@@ -18,6 +18,7 @@ You may want to create a python virtual environment before installing so as to n
 ### Setting up Postgres ###
 **Ubuntu**
 [Installation and basic server setup.](https://help.ubuntu.com/community/PostgreSQL)
+
 **Mac**
 [Installation and basic server setup.](http://postgresapp.com/)
 
