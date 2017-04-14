@@ -9,27 +9,31 @@ because dryscrape is only supported on these systems.
 
 Here is more information about [dryscrape](https://github.com/niklasb/dryscrape/blob/master/README.md).
 
-## How to run ##
-
-### Setup ###
+## Installing dependencies ##
 You may want to create a python virtual environment before installing so as to not interfere with other python projects.
 ```bash
 ./setup.sh
 ```
-**Postgres and scrapy should be set up independently.**
 
-### Extract data ###
-```bash
-./extract.sh -z <zipcode>
-```
+### Setting up Postgres ###
+**Ubuntu**
+[Installation and basic server setup.](https://help.ubuntu.com/community/PostgreSQL)
+**Mac**
+[Installation and basic server setup.](http://postgresapp.com/)
 
-## Dependencies/Installation pages ##
+### Dependencies/Installation pages ###
 * [Scrapy](http://doc.scrapy.org/en/latest/intro/install.html) (see platform specific installation notes first before installing)
 * [Postgres](https://help.ubuntu.com/community/PostgreSQL)
 * [SQLAlchemy](http://docs.sqlalchemy.org/en/latest/intro.html) (installed in setup script)
 * [dryscrape](http://dryscrape.readthedocs.io/en/latest/installation.html) (installed in setup script)
 * [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) (install in setup script)
 * xvfb (install in setup script or use apt-get)
+
+## How to run ##
+### Extract data ###
+```bash
+./extract.sh -z <zipcode>
+```
 
 ## Additional Notes ##
 Make sure that you rename the database_settings template to database_settings.py if you use it as database_settings.py has been added to the gitignore.
