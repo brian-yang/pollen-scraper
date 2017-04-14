@@ -24,9 +24,10 @@ Mac: [Installation and basic server setup.](http://postgresapp.com/)
 * [Scrapy](http://doc.scrapy.org/en/latest/intro/install.html) (see platform specific installation notes first before installing)
 * [SQLAlchemy](http://docs.sqlalchemy.org/en/latest/intro.html) (installed in setup script)
 * [dryscrape](http://dryscrape.readthedocs.io/en/latest/installation.html) (installed in setup script)
-* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) (install in setup script)
-* [Postgres](https://help.ubuntu.com/community/PostgreSQL)
+* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) (installed in setup script)
 * [xvfb](https://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml) (installed in setup script or use apt-get)
+* [Postgres](https://help.ubuntu.com/community/PostgreSQL)
+
 
 ## How to run ##
 ### Extract data ###
