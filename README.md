@@ -16,11 +16,9 @@ You may want to create a python virtual environment before installing so as to n
 ```
 
 ### Setting up Postgres ###
-**Ubuntu**
-[Installation and basic server setup.](https://help.ubuntu.com/community/PostgreSQL)
+Ubuntu: [Installation and basic server setup.](https://help.ubuntu.com/community/PostgreSQL)
 
-**Mac**
-[Installation and basic server setup.](http://postgresapp.com/)
+Mac: [Installation and basic server setup.](http://postgresapp.com/)
 
 ### Dependencies/Installation pages ###
 * [Scrapy](http://doc.scrapy.org/en/latest/intro/install.html) (see platform specific installation notes first before installing)
