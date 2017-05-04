@@ -1,11 +1,12 @@
 # pollen-scraper
 
 ## Supported Platforms ##
-The pollen scraper can only run on:
+The pollen scraper can run on:
 * Mac OS X 10.9 Mavericks and 10.10 Yosemite
 * Ubuntu Linux, Arch Linux, and other Unix-like operating systems
 
-because dryscrape is only supported on these systems.
+because dryscrape is supported on these systems.
+Windows is not officially supported, but dryscrape should work with [cygwin](https://www.cygwin.com/).
 
 Here is more information about [dryscrape](https://github.com/niklasb/dryscrape/blob/master/README.md).
 
