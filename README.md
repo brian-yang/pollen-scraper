@@ -36,12 +36,12 @@ Mac: [Installation and basic server setup.](http://postgresapp.com/)
 ```
 
 ## Additional Notes ##
-Make sure that you rename the database_settings template to database_settings.py if you use it as database_settings.py has been added to the gitignore.
+* Make sure that you rename the database_settings template to database_settings.py if you use it as database_settings.py has been added to the gitignore.
 **PLEASE MAKE SURE THAT YOU DO NOT PUSH THE FILE WITH YOUR DATABASE SETTINGS!**
 
-**Please ensure that Postgres is set up correctly, with a database named scrape and a user postgres.** The default database name can be changed in database_settings.py and the extract.sh script. The default user name can be changed in the extract.sh script.
+* Please ensure that Postgres is set up correctly, with a database named ```scrape``` and a user ```postgres```. The default database name can be changed in database_settings.py and the extract.sh script. The default user name can be changed in the extract.sh script.
 
-**Also note that the crawler may time out sometimes without successfully extracting. The default timeout is 20 seconds, but this can be changed in pollen_spider.py.**
+* Also note that the crawler may time out sometimes without successfully extracting. The default timeout is 20 seconds, but this can be changed in pollen_spider.py.
 
 ## Thank You Note ##
 Special thanks to [newcoder](http://www.newcoder.io) for the amazing tutorial on web scraping!
